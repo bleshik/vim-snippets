@@ -165,6 +165,13 @@ snip.rv = snip.basename or "untitled"`} {
 }
 endsnippet
 
+snippet en "enum" b
+public enum ${1:`!p
+snip.rv = snip.basename or "untitled"`} {
+	$0
+}
+endsnippet
+
 snippet cos "constant string" b
 public static final String ${1:var} = "$2";$0
 endsnippet
@@ -266,6 +273,16 @@ for i in args:
 	snip.rv += "\n\tprivate " + i[0] + " " + i[1]+ ";"
 if len(args) > 0:
 	snip.rv += "\n"`
+public `!p snip.rv = snip.basename or "unknown"`($1) { `!p
+args = getArgs(t[1])
+for i in args:
+	snip.rv += "\n\t\tthis.%s = %s;" % (i[1], i[1])
+if len(args) == 0:
+	snip.rv += "\n"`
+}
+endsnippet
+
+snippet cn "constructor, assigments" b
 public `!p snip.rv = snip.basename or "unknown"`($1) { `!p
 args = getArgs(t[1])
 for i in args:
